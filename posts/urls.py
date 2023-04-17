@@ -11,5 +11,5 @@ urlpatterns = [
     path('', post_list_and_create, name='main-board'),
 
     path('hello-world/',hello_world_view, name='hello-world'),
-    path('data/', load_post_data_view, name='posts-data')
+    path('data/<int:num_posts>/', load_post_data_view, name='posts-data')
 ]
