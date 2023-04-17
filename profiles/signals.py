@@ -8,3 +8,5 @@ def post_save_create_profile(sender, instance, created, *args, **kwargs):
     print(sender)
     print(instance)
     print(created)
+    if created:
+        Profile.objects.create(user=instance)
