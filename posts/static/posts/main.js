@@ -11,6 +11,7 @@ const body = document.getElementById('id_body');
 const csrf = document.getElementsByName('csrfmiddlewaretoken');
 console.log('csrf',csrf[0].value);
 const alertBox = document.getElementById('alert-box');
+const url = window.location.href;
 
 const getCookie =(name) => {
     let cookieValue = null;
@@ -66,21 +67,21 @@ const getData = () => {
             setTimeout(()=>{
                 spinnerBox.classList.add('not-visible');
                 console.log(data);
-                data.forEach(idx => {
+                data.forEach(el => {
                     postsBox.innerHTML += `
                         <div class="card mb-2">
                             <div class="card-body">
-                                <h5 class="card-title">${idx.title}</h5>
-                                <p class="card-text">${idx.body}</p>
+                                <h5 class="card-title">${el.title}</h5>
+                                <p class="card-text">${el.body}</p>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-2">
-                                        <a href="#" class="btn btn-primary">Details</a>
+                                        <a href="${url}${el.id}" class="btn btn-primary">Details</a>
                                     </div>
                                     <div class="col-2">
-                                        <form class="like-unlike-forms" data-form-id="${idx.id}">
-                                            <button href="#" class="btn btn-primary" id="like-unlike-${idx.id}">${idx.liked ? `Unlike (${idx.count})`: `Like (${idx.count})`}</button>
+                                        <form class="like-unlike-forms" data-form-id="${el.id}">
+                                            <button href="#" class="btn btn-primary" id="like-unlike-${el.id}">${el.liked ? `Unlike (${el.count})`: `Like (${el.count})`}</button>
                                         </form>
                                     </div>
                                 </div>
