@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def post_list_and_create(request):
     form = PostForm(request.POST or None)
-    #qs = Post.objects.all()
 
     if is_ajax(request=request):
         if form.is_valid():
@@ -68,15 +67,16 @@ def load_post_data_view(request, num_posts):
 
 @login_required
 def post_detail_data_view(request, pk):
-    obj = Post.objects.get(pk=pk)
-    data = {
-        'id': obj.id,
-        'title': obj.title,
-        'body': obj.body,
-        'author': obj.author.user.username,
-        'logged_in': request.user.username,
-    }
-    return JsonResponse({'data': data})
+    if is_ajax(request=request):
+        obj = Post.objects.get(pk=pk)
+        data = {
+            'id': obj.id,
+            'title': obj.title,
+            'body': obj.body,
+            'author': obj.author.user.username,
+            'logged_in': request.user.username,
+        }
+        return JsonResponse({'data': data})
 
 
 def is_ajax(request):
