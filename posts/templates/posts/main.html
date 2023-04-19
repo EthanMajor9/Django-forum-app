@@ -28,7 +28,7 @@ posts
                             <button type="submit" id="add-btn" class="btn btn-success">Create</button>
                         </div>
                     </form>
-                    <form action="/upload" id="dropzone-1" class="dropzone dz not-visible">
+                    <form action="upload/" id="dropzone-1" class="dropzone dz not-visible">
                         {% csrf_token %}
                         <div class="fallback">
                             <input name="file" type="file" multiple/>

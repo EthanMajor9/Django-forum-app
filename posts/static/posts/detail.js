@@ -13,9 +13,9 @@ const deleteForm = document.getElementById('delete-form');
 const csrf = document.getElementsByName('csrfmiddlewaretoken');
 const alertBox = document.getElementById('alert-box');
 
-backBtn.addEventListener('click', () => {
-    history.back();
-})
+//backBtn.addEventListener('click', () => {
+//  history.back();
+//})
 
 $.ajax({
     type: 'GET',
