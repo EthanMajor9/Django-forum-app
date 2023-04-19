@@ -1,17 +1,16 @@
-console.log('hello world');
-
 const postsBox = document.getElementById('posts-box');
 const spinnerBox = document.getElementById('spinner-box');
 const loadBtn = document.getElementById('load-btn');
 const endBox = document.getElementById('end-box');
-
 const postForm = document.getElementById('post-form');
 const title = document.getElementById('id_title');
 const body = document.getElementById('id_body');
 const csrf = document.getElementsByName('csrfmiddlewaretoken');
-console.log('csrf',csrf[0].value);
 const alertBox = document.getElementById('alert-box');
 const url = window.location.href;
+const addBtn = document.getElementById('add-btn');
+const closeBtns = [...document.getElementsByClassName('add-modal-close')];
+const dropzone = document.getElementById('dropzone-1');
 
 const getCookie =(name) => {
     let cookieValue = null;
@@ -152,9 +151,9 @@ postForm.addEventListener('submit', e=>{
                 </div>
             `);
             likeUnlikePosts()
-            $('#addPostModal').modal('hide')
+            // $('#addPostModal').modal('hide')
             handleAlerts('success', 'Post created successfully');
-            postForm.reset()
+            // postForm.reset()
         },
         error: function(error) {
             console.log(error);
@@ -163,5 +162,17 @@ postForm.addEventListener('submit', e=>{
         }
     })
 })
+
+addBtn.addEventListener('click', ()=>{
+    dropzone.classList.remove('not-visible');
+})
+
+closeBtns.forEach(btn => btn.addEventListener('click', () => {
+    postForm.reset();
+
+    if(!dropzone.classList.contains('not-visible')){
+        dropzone.classList.add('not-visible');
+    }
+}))
 
 getData();
